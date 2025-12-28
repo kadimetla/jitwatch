@@ -153,6 +153,13 @@ public class StageManager
 	{
 		addAndShow(parent, childStage, null);
 
+		// fetch scene size and resize window due to JavaFX bug
+		// reported in https://github.com/AdoptOpenJDK/jitwatch/issues/392
+		double width = childStage.getScene().widthProperty().get();
+		double height = childStage.getScene().heightProperty().get();
+
+		childStage.setWidth(width);
+		childStage.setHeight(height);
 	}
 
 	public static void addAndShow(final Stage parent, final Stage childStage, final IStageClosedListener closedListener)
